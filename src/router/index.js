@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
+import Home from '@/app/Home';
+import Roadmap from '@/app/Roadmap';
+import Kanban from '@/app/Kanban';
 
 Vue.use(Router);
 
@@ -8,8 +10,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'Home',
+      component: Home,
+    },
+    {
+      path: '/roadmap',
+      name: 'Roadmap',
+      component: Roadmap,
+      children: [
+        {
+          path: '/roadmap/kanban',
+          name: 'Kanban',
+          component: Kanban
+        }
+      ]
     },
   ],
 });
