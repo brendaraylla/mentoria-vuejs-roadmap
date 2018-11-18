@@ -17,13 +17,11 @@ export default new Router({
       path: '/roadmap',
       name: 'Roadmap',
       component: Roadmap,
-      children: [
-        {
-          path: '/roadmap/kanban',
-          name: 'Kanban',
-          component: Kanban
-        }
-      ]
     },
+    {
+      path: '/roadmap/kanban',
+      name: 'Kanban',
+      component: Kanban
+    }
   ],
 });

@@ -16,13 +16,14 @@ export default {};
 <style lang="sass" scoped>
 @import '@/styles/defaults/mobileFirst.sass'
 @import '@/styles/defaults/variable.sass'
+@import url('https://fonts.googleapis.com/css?family=Roboto:300')
 
 +media-min-sm()
 +media-min-md()
 +media-min-lg()
 
 .content
-    background: url('../../../static/img/fotoca.png') no-repeat center center fixed
+    background: url('../../../static/img/background-home.png') no-repeat center center fixed
     -webkit-background-size: cover
     -moz-background-size: cover
     -o-background-size: cover
@@ -34,15 +35,18 @@ export default {};
         display: flex
         justify-content: center
         &-entry
+            padding: 10px 35px
             background: transparent
             border: 5px solid $color-blue
-            border-radius: 15px
+            border-radius: 30px
             color: $color-font
-            margin-top: 200px
+            margin-top: 70%
+            font-family: Roboto
+            font-size: 1.0em
             +media-min-sm()
-                padding: 10px
+                font-size: 1.2em
+                padding: 10px 35px
             +media-min-md()
-                padding: 50px
             +media-min-lg()
-                padding: 200px
+                font-size: 1.4em
 </style>
