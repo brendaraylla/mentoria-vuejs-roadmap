@@ -1,7 +1,7 @@
 <template>
     <div class="content">
-        <router-link :to="{ name: 'Kanban' }">
-            <button class="btn__months">{{ nameMonth }}</button>
+        <router-link :to="{ name: 'Kanban', params: {month: nameMonth} }">
+            <button class="months">{{ nameMonth }}</button>
         </router-link>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
 @import '@/styles/defaults/mobileFirst.sass'
 @import '@/styles/defaults/variable.sass'
 
-.btn__months
+.months
     background: transparent
     color: $color-font
     border: 5px solid $color-blue
@@ -30,24 +30,17 @@ export default {
     padding: 5px
     font-size: 18px
     +media-min-sm
-        border: 5px solid $color-blue
         height: 80px
         width: 80px
-        border-radius: 50%
-        padding: 5px
         font-size: 22px
     +media-min-md
         border: 7px solid $color-blue
         height: 90px
         width: 90px
-        border-radius: 50%
-        padding: 5px
         font-size: 24px
     +media-min-lg
         border: 7px solid $color-blue
         height: 110px
         width: 110px
-        border-radius: 50%
-        padding: 5px
         font-size: 26px
 </style>

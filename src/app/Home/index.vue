@@ -1,8 +1,8 @@
 <template>
     <div class="content">
         <div class="roadmap">
-            <router-link :to="{ name: 'Roadmap' }">
-                <button class="roadmap-entry">Roadmap</button>
+            <router-link class="roadmap-entry" :to="{ name: 'Roadmap' }">
+                Roadmap
             </router-link>
         </div>
     </div>
@@ -32,21 +32,29 @@ export default {};
     width: 100%
     height: 100%
     .roadmap
+        position: absolute
         display: flex
         justify-content: center
+        width: 100%
         &-entry
+            position: relative
+            top: 100px
+            text-decoration: none
             padding: 10px 35px
             background: transparent
             border: 5px solid $color-blue
             border-radius: 30px
             color: $color-font
-            margin-top: 70%
             font-family: Roboto
             font-size: 1.0em
             +media-min-sm()
                 font-size: 1.2em
                 padding: 10px 35px
             +media-min-md()
-            +media-min-lg()
+                padding: 15px 40px
+                top: 130px
                 font-size: 1.4em
+            +media-min-lg()
+                top: 150px
+                font-size: 1.6em
 </style>

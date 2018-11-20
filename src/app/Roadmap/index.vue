@@ -19,6 +19,24 @@
             <div class="col">
                 <months-roadmap nameMonth="JUN"></months-roadmap>
             </div>
+            <div class="col">
+                <months-roadmap nameMonth="JUL"></months-roadmap>
+            </div>
+            <div class="col">
+                <months-roadmap nameMonth="AGO"></months-roadmap>
+            </div>
+            <div class="col">
+                <months-roadmap nameMonth="SET"></months-roadmap>
+            </div>
+            <div class="col">
+                <months-roadmap nameMonth="OUT"></months-roadmap>
+            </div>
+            <div class="col">
+                <months-roadmap nameMonth="NOV"></months-roadmap>
+            </div>
+            <div class="col">
+                <months-roadmap nameMonth="DEZ"></months-roadmap>
+            </div>
         </div>
     </div>
 </template>
@@ -48,14 +66,19 @@ export default {
     background-size: cover
     background-position: center
     width: 100%
-    height: 100%
+    padding: 80px
+    +media-min-sm
     +media-min-md
+        overflow: auto
+        height: 100%
+        padding: 0
         background: url('../../../static/img/background-roadmap.png') no-repeat center center fixed
         -webkit-background-size: cover
         -moz-background-size: cover
         -o-background-size: cover
         background-size: cover
         background-position: center
+    +media-min-lg
 
 .row
     display: flex
@@ -67,13 +90,11 @@ export default {
     .col
         align-self: center
         display: flex
-        flex-direction: column
     +media-min-sm
     +media-min-md
         flex-direction: row
-        align-content: center
-        padding: 0 100px
+        .col
+            padding: 40px
     +media-min-lg
-        padding: 0 120px
 
 </style>

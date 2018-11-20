@@ -1,6 +1,9 @@
 <template>
     <div class="content">
         <div class="container">
+            <router-link class="icon-back" :to="{ name: 'Roadmap' }">
+                <img src="@/../static/icon/arrow-left-solid.svg" alt="">
+            </router-link>
             <div class="todo">
                 <h2 class="status">TO DO</h2>
             </div>
@@ -26,6 +29,9 @@ export default {
 @import '@/styles/defaults/mobileFirst.sass'
 @import '@/styles/defaults/variable.sass'
 @import url('https://fonts.googleapis.com/css?family=Roboto:300')
+
+.icon-back
+    // padding: 20px
 
 .content
     background: url('../../../static/img/background-kanban.png') no-repeat center center fixed
