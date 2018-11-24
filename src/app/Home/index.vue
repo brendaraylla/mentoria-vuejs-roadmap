@@ -55,6 +55,5 @@ export default {};
                 top: 130px
                 font-size: 1.4em
             +media-min-lg()
-                top: 150px
                 font-size: 1.6em
 </style>

@@ -66,12 +66,11 @@ export default {
     background-size: cover
     background-position: center
     width: 100%
-    padding: 80px
     +media-min-sm
     +media-min-md
+        position: relative
         overflow: auto
         height: 100%
-        padding: 0
         background: url('../../../static/img/background-roadmap.png') no-repeat center center fixed
         -webkit-background-size: cover
         -moz-background-size: cover
@@ -90,11 +89,16 @@ export default {
     .col
         align-self: center
         display: flex
+        padding: 80px
     +media-min-sm
     +media-min-md
         flex-direction: row
+        position: absolute
+        margin: 0 75px
         .col
-            padding: 40px
+            padding: 50px
     +media-min-lg
+        margin: 0 110px
+        
 
 </style>

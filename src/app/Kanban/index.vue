@@ -31,7 +31,9 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Roboto:300')
 
 .icon-back
-    // padding: 20px
+    position: absolute
+    left: 25px
+    top: 25px
 
 .content
     background: url('../../../static/img/background-kanban.png') no-repeat center center fixed
@@ -49,6 +51,7 @@ export default {
     height: 100%
     width: 100%
     justify-content: space-between
+    position: relative
     .todo
         flex: 1
         display: flex
