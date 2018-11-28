@@ -60,9 +60,6 @@ export default {
 
 .content
     background: url('../../../static/img/background-roadmap-vertical.png') no-repeat center center fixed
-    -webkit-background-size: cover
-    -moz-background-size: cover
-    -o-background-size: cover
     background-size: cover
     background-position: center
     width: 100%
@@ -72,9 +69,6 @@ export default {
         overflow: auto
         height: 100%
         background: url('../../../static/img/background-roadmap.png') no-repeat center center fixed
-        -webkit-background-size: cover
-        -moz-background-size: cover
-        -o-background-size: cover
         background-size: cover
         background-position: center
     +media-min-lg

@@ -6,6 +6,7 @@
             </router-link>
             <div class="todo">
                 <h2 class="status">TO DO</h2>
+                <card-item></card-item>
             </div>
             <div class="doing">
                 <h2 class="status">DOING</h2>
@@ -20,7 +21,12 @@
 </template>
 
 <script>
+import Card from '@/components/card';
+
 export default {
+    components: {
+        "card-item": Card
+    }
 
 }
 </script>
@@ -37,9 +43,6 @@ export default {
 
 .content
     background: url('../../../static/img/background-kanban.png') no-repeat center center fixed
-    -webkit-background-size: cover
-    -moz-background-size: cover
-    -o-background-size: cover
     background-size: cover
     background-position: center
     width: 100%
