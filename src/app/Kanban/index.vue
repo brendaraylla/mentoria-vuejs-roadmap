@@ -6,14 +6,16 @@
             </router-link>
             <div class="todo">
                 <h2 class="status">TO DO</h2>
-                <card-item></card-item>
+                <card-item class="todo__card" v-for="card in status.todo" :key="card.id" :card="card" :status="'todo'" :fromPath="true"></card-item>
             </div>
             <div class="doing">
                 <h2 class="status">DOING</h2>
+                <card-item v-for="card in status.doing" :key="card.id" :card="card" :status="'doing'" :fromPath="true"></card-item>
 
             </div>
             <div class="done">
                 <h2 class="status">DONE</h2>
+                <card-item v-for="card in status.done" :key="card.id" :card="card" :status="'done'" :fromPath="true"></card-item>
 
             </div>
         </div>
@@ -22,10 +24,31 @@
 
 <script>
 import Card from '@/components/card';
+import KanbanService from '@/service/KanbanService';
 
 export default {
+    data() {
+        return {
+            status: []
+        }
+    },
     components: {
         "card-item": Card
+    },
+    created() {
+        const service = new KanbanService();
+        this.status = service.getCardsFromMonth(this.month, this.year);
+        console.log(status)
+    },
+    props: {
+        year: {
+            type: Number,
+            required: true
+        },
+        month: {
+            type: String,
+            required: true
+        },
     }
 
 }
@@ -60,6 +83,8 @@ export default {
         display: flex
         flex-direction: column
         border-right: 2px solid $color-blue
+        &__card
+            height: 10%
     .doing
         flex: 1
         display: flex

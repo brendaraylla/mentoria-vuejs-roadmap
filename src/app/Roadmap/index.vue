@@ -1,41 +1,8 @@
 <template>
     <div class="content">
         <div class="row">
-            <div class="col">
-                <months-roadmap nameMonth="JAN"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="FEV"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="MAR"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="ABR"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="MAI"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="JUN"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="JUL"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="AGO"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="SET"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="OUT"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="NOV"></months-roadmap>
-            </div>
-            <div class="col">
-                <months-roadmap nameMonth="DEZ"></months-roadmap>
+            <div class="col" v-for="month in months" :key="month.id">
+                <months-roadmap :month="month"></months-roadmap>
             </div>
         </div>
     </div>
@@ -43,12 +10,24 @@
 
 <script>
 import Months from "./months";
+import RoadmapService from "@/service/RoadmapService";
 
 export default {
+    data() {
+        return {
+            months: []
+        }
+    },
     components: {
         'months-roadmap': Months,
+    },
+    methods: {
+        
+    },
+    created() {
+        const service = new RoadmapService();
+        this.months = service.getMonths();
     }
-
 
 };
 
@@ -83,6 +62,7 @@ export default {
     .col
         align-self: center
         display: flex
+        height: 100%
         padding: 80px
     +media-min-sm
     +media-min-md

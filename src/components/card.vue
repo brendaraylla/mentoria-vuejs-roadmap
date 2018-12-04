@@ -1,7 +1,7 @@
 <template>
-    <div class="card-content">
-        <h2 >{{ card.title }}</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+    <div class="card-content" :class="bindClass">
+        <div v-text="card.title"></div>
+        <p v-if="fromPath" v-text="card.description"></p>
     </div>
 </template>
 
@@ -11,7 +11,35 @@ import Card from '@/entity/Card';
 export default {
     data() {
         return {
-            card: new Card()
+            // status: "doing"
+        }
+    },
+    props: {
+        card: {
+            type: Object,
+            required: true
+        },
+        status: {
+            type: String,
+            required: true
+        },
+        fromPath: {
+            type: Boolean,
+            required: true
+        },
+    }, 
+    computed: {
+        bindClass() {
+            // { 'todo': status == 'todo', 'doing': status == 'doing', 'done': status == 'done' }
+            if (this.status == 'todo') {
+                return { 'todo': true};
+            }
+            if (this.status == 'doing') {
+                return { 'doing': true};
+            }
+            if (this.status == 'done') {
+                return { 'done': true};
+            }
         }
     }
 
@@ -21,10 +49,21 @@ export default {
 <style lang="sass" scoped>
 @import '@/styles/defaults/variable.sass'
 
-.card-content
-    margin: 0 40px
-    background-color: #FE5D5D
-    width: 370px
+.todo,
+.doing,
+.done
+    padding: 0 30px
+    margin: 20px
     border-radius: 10px
-    color: #fff
+    height: 40px
+    display: flex
+    align-items: center
+    justify-content: space-around
+    
+.todo
+    background-color: $color-todo
+.doing
+    background-color: $color-doing
+.done
+    background-color: $color-done
 </style>

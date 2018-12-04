@@ -19,9 +19,10 @@ export default new Router({
       component: Roadmap,
     },
     {
-      path: '/roadmap/kanban/:month',
+      path: '/roadmap/kanban/:year/:month',
       name: 'Kanban',
-      component: Kanban
+      component: Kanban,
+      props: true
     }
   ],
 });
