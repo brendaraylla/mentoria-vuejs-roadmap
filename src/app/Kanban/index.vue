@@ -1,22 +1,26 @@
 <template>
-    <div class="content">
+    <div class="content-kanban">
         <div class="container">
             <router-link class="icon-back" :to="{ name: 'Roadmap' }">
                 <img src="@/../static/icon/arrow-left-solid.svg" alt="">
             </router-link>
             <div class="todo">
                 <h2 class="status">TO DO</h2>
-                <card-item class="todo__card" v-for="card in status.todo" :key="card.id" :card="card" :status="'todo'" :fromPath="true"></card-item>
+                <div class="cards">
+                    <card-item v-for="card in todo" :key="card.id" :card="card" :status="'todo'" :fromPath="true"></card-item>
+                </div>
             </div>
             <div class="doing">
                 <h2 class="status">DOING</h2>
-                <card-item v-for="card in status.doing" :key="card.id" :card="card" :status="'doing'" :fromPath="true"></card-item>
-
+                <div class="cards">
+                    <card-item v-for="card in doing" :key="card.id" :card="card" :status="'doing'" :fromPath="true"></card-item>
+                </div>
             </div>
             <div class="done">
                 <h2 class="status">DONE</h2>
-                <card-item v-for="card in status.done" :key="card.id" :card="card" :status="'done'" :fromPath="true"></card-item>
-
+                <div class="cards">
+                    <card-item v-for="card in done" :key="card.id" :card="card" :status="'done'" :fromPath="true"></card-item>
+                </div>
             </div>
         </div>
     </div>
@@ -25,11 +29,13 @@
 <script>
 import Card from '@/components/card';
 import KanbanService from '@/service/KanbanService';
-
+import { mapGetters, mapActions } from 'vuex';
 export default {
     data() {
         return {
-            status: []
+            todo: [],
+            doing: [],
+            done: [],
         }
     },
     components: {
@@ -37,8 +43,14 @@ export default {
     },
     created() {
         const service = new KanbanService();
-        this.status = service.getCardsFromMonth(this.month, this.year);
-        console.log(status)
+        // this.status = service.getCardsFromMonth(this.month, this.year);
+        this.setKanban(this.month);
+
+        this.todo = this.getTodo;
+        this.doing = this.getDoing;
+        this.done = this.getDone;
+        
+        // console.log("KANBAN - VALOR NOVO::: ", this.getCardNewValue)
     },
     props: {
         year: {
@@ -49,6 +61,19 @@ export default {
             type: String,
             required: true
         },
+    },
+    computed: {
+        ...mapGetters([
+            // 'getCardNewValue'
+            'getTodo',
+            'getDoing',
+            'getDone'
+        ])
+    },
+    methods: {
+        ...mapActions([
+            'setKanban'
+        ]),
     }
 
 }
@@ -64,42 +89,46 @@ export default {
     left: 25px
     top: 25px
 
-.content
+.content-kanban
     background: url('../../../static/img/background-kanban.png') no-repeat center center fixed
     background-size: cover
     background-position: center
     width: 100%
     height: 100%
-
+    overflow: auto
+    
 .container
     display: flex
+    flex-direction: column
     flex: 1
-    height: 100%
-    width: 100%
-    justify-content: space-between
-    position: relative
     .todo
-        flex: 1
         display: flex
         flex-direction: column
         border-right: 2px solid $color-blue
-        &__card
-            height: 10%
     .doing
-        flex: 1
         display: flex
         flex-direction: column
         border-right: 1px solid $color-blue
         border-left: 1px solid $color-blue
     .done
-        flex: 1
         display: flex
         flex-direction: column
         border-left: 2px solid $color-blue
+    +media-min-md
+        height: 100%
+        flex-direction: row
+        .todo, .doing, .done
+            flex: 1
 
 .status
     color: $color-blue
     text-align: center
     font-size: 1.8em
     font-family: Roboto
+
+.cards
+    height: 100%
+    .content-card
+        height: 120px
+    
 </style>

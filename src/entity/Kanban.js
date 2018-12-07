@@ -1,11 +1,13 @@
 
-import { Card } from 'Card';
+import Card from './Card';
 
 export default class Kanban {
-    constructor() {
-        this.todo = [];
-        this.doing = [];
-        this.done = [];
+    constructor(status) {
+        // console.log("status todo", status.todo)
+        // this.todo = [new Card(status.todo)];
+        this.todo = status.todo;
+        this.doing = status.doing;
+        this.done = status.done;
     }
 
     addCardTodo(card) {
