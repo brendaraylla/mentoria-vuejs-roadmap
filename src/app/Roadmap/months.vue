@@ -22,7 +22,6 @@ export default {
             type: Object,
             required: true,
         },
-        
     },
     computed: {
         monthUpperCase() {
@@ -32,10 +31,7 @@ export default {
     components: {
         "card-item" : card
     },
-    mounted() {
-        // console.log(this.month.status);
-    }
-
+    
 }
 </script>
 
@@ -55,7 +51,6 @@ export default {
         height: 100%
 
 .card
-    width: 150px
     position: relative
     +media-min-sm
         left: 5%

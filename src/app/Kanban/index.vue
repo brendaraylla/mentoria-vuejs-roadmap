@@ -7,19 +7,25 @@
             <div class="todo">
                 <h2 class="status">TO DO</h2>
                 <div class="cards">
-                    <card-item v-for="card in todo" :key="card.id" :card="card" :status="'todo'" :fromPath="true"></card-item>
+                    <card-item v-for="card in status.todo" :key="card.id" 
+                               @moveCard="localMoveToDoing(month, card)" :card="card" :status="'todo'" :fromPath="true">
+                    </card-item>
                 </div>
             </div>
             <div class="doing">
                 <h2 class="status">DOING</h2>
                 <div class="cards">
-                    <card-item v-for="card in doing" :key="card.id" :card="card" :status="'doing'" :fromPath="true"></card-item>
+                    <card-item v-for="card in status.doing" :key="card.id" 
+                               @moveCard="localMoveToDone(month, card)" :card="card" :status="'doing'" :fromPath="true">
+                    </card-item>
                 </div>
             </div>
             <div class="done">
                 <h2 class="status">DONE</h2>
                 <div class="cards">
-                    <card-item v-for="card in done" :key="card.id" :card="card" :status="'done'" :fromPath="true"></card-item>
+                    <card-item v-for="card in status.done" :key="card.id" 
+                               :card="card" :status="'done'" :fromPath="true" :action="false">
+                    </card-item>
                 </div>
             </div>
         </div>
@@ -33,24 +39,10 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
     data() {
         return {
-            todo: [],
-            doing: [],
-            done: [],
         }
     },
     components: {
         "card-item": Card
-    },
-    created() {
-        const service = new KanbanService();
-        // this.status = service.getCardsFromMonth(this.month, this.year);
-        this.setKanban(this.month);
-
-        this.todo = this.getTodo;
-        this.doing = this.getDoing;
-        this.done = this.getDone;
-        
-        // console.log("KANBAN - VALOR NOVO::: ", this.getCardNewValue)
     },
     props: {
         year: {
@@ -64,16 +56,25 @@ export default {
     },
     computed: {
         ...mapGetters([
-            // 'getCardNewValue'
-            'getTodo',
-            'getDoing',
-            'getDone'
-        ])
+            'getKanban',
+        ]),
+        status() {
+            return this.getKanban(this.month);
+        }
     },
     methods: {
         ...mapActions([
-            'setKanban'
+            'moveToDoing',
+            'moveToDone',
         ]),
+        localMoveToDoing(month, card) {
+            const payload = { month, card }
+            this.moveToDoing( payload );
+        },
+        localMoveToDone(month, card) {
+            const payload = { month, card }
+            this.moveToDone( payload );
+        }, 
     }
 
 }

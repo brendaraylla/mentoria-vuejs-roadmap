@@ -1,12 +1,12 @@
 
+import Card from "@/entity/Card";
 
 export default {
     
     getCardNewValue: store => store.card,
 
-    getTodo: store => store.todo,
-    getDoing: store => store.doing,
-    getDone: store => store.done,
-    // 3 getters
-    
+    getRoadmap: store => store.roadmap,
+
+    getKanban: store => month => ((store.roadmap.find( kanban => (kanban.name == month) ) || { status: {} }).status),
+
 }

@@ -1,27 +1,25 @@
 import * as Mutations from '@/store/mutations'
-import KanbanService from '@/service/KanbanService'
+import RoadmapService from '@/service/RoadmapService'
 
 export default {
 
-    // 1 set kanban p trazer as informaçoes do service
-    setKanban({ commit }, month) {
-        const service = new KanbanService();
-        const status = service.getCardsFromMonth(month)
-        commit(Mutations.SET_KANBAN, status);
-        console.log("month ", status)
+    setRoadmap({ commit }) {
+        const service = new RoadmapService();
+        const months = service.getMonths();
+        commit(Mutations.SET_ROADMAP, months);
     },
-
 
     // 1 add card no todo
     addCardTodo({ commit }, ) {
 
     },
 
-    moveToDoing({ commit }, card) {
-        commit(Mutations.MOVE_TO_DOING, card);
+    moveToDoing({ commit }, payload) {
+        commit(Mutations.MOVE_TO_DOING, payload);
     },
 
-    moveToDone({ commit }, card) {
-        commit(Mutations.MOVE_TO_DONE, card);
+    moveToDone({ commit }, payload) {
+        commit(Mutations.MOVE_TO_DONE, payload);
     },
+
 }

@@ -1,5 +1,8 @@
 <template>
     <div class="content-card" :class="bindClass">
+        <button v-if="fromPath && action" class="move-card" @click="moveCard">
+            <img src="@/../static/icon/arrow-right-solid.svg" alt="">
+        </button>
         <div class="titulo" v-text="card.title"></div>
         <p v-if="fromPath" v-text="card.description"></p>
     </div>
@@ -22,10 +25,13 @@ export default {
             type: Boolean,
             required: true
         },
+        action: {
+            type: Boolean,
+            default: true
+        },
     }, 
     computed: {
         bindClass() {
-            // { 'todo': status == 'todo', 'doing': status == 'doing', 'done': status == 'done' }
             if (this.status == 'todo') {
                 return { 'todo': true};
             }
@@ -35,6 +41,11 @@ export default {
             if (this.status == 'done') {
                 return { 'done': true};
             }
+        }
+    },
+    methods: {
+        moveCard() {
+            this.$emit('moveCard');
         }
     }
 
@@ -75,4 +86,17 @@ export default {
     background-color: $color-doing
 .done
     background-color: $color-done
+
+.move-card
+    position: relative
+    left: 50%
+    padding-top: 3%
+    cursor: pointer
+    background-color: transparent
+    border: none
+    &:focus
+        outline: none
+    +media-min-md
+        left: 54%
+
 </style>

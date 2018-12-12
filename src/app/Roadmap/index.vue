@@ -16,7 +16,6 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            months: []
         }
     },
     components: {
@@ -24,20 +23,18 @@ export default {
     },
     methods: {
         ...mapActions([
-            // 'updateCard'
+            'setRoadmap'
         ])
-    },
-    created() {
-        const service = new RoadmapService();
-        this.months = service.getMonths();
-        
     },
     computed: {
         ...mapGetters([
-            // 'getCardNewValue'
-        ])
-    }
-
+            'getRoadmap',
+        ]),
+        months() {
+            return this.getRoadmap;
+        }
+    },
+    
 };
 
 </script>
