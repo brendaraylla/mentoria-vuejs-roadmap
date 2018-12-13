@@ -5,7 +5,7 @@
                 <img src="@/../static/icon/arrow-left-solid.svg" alt="">
             </router-link>
             <div class="todo">
-                <h2 class="status">TO DO</h2>
+                <h2 class="status" @click="localAddCardTodo(month)">TO DO</h2>
                 <div class="cards">
                     <card-item v-for="card in status.todo" :key="card.id" 
                                @moveCard="localMoveToDoing(month, card)" :card="card" :status="'todo'" :fromPath="true">
@@ -37,10 +37,6 @@ import Card from '@/components/card';
 import KanbanService from '@/service/KanbanService';
 import { mapGetters, mapActions } from 'vuex';
 export default {
-    data() {
-        return {
-        }
-    },
     components: {
         "card-item": Card
     },
@@ -66,6 +62,7 @@ export default {
         ...mapActions([
             'moveToDoing',
             'moveToDone',
+            'addCardTodo'
         ]),
         localMoveToDoing(month, card) {
             const payload = { month, card }
@@ -75,6 +72,9 @@ export default {
             const payload = { month, card }
             this.moveToDone( payload );
         }, 
+        localAddCardTodo(month) {
+            this.addCardTodo( month );
+        }
     }
 
 }

@@ -10,8 +10,8 @@ export default {
     },
 
     // 1 add card no todo
-    addCardTodo({ commit }, ) {
-
+    addCardTodo({ commit }, month) {
+        commit(Mutations.ADD_CARD_TODO, month)
     },
 
     moveToDoing({ commit }, payload) {

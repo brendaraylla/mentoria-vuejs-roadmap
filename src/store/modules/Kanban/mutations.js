@@ -1,10 +1,23 @@
 
 import * as Mutations from '@/store/mutations'
+import Card from '@/entity/Card'
 
 export default {
 
     [Mutations.SET_ROADMAP](store, roadmap) {
         store.roadmap = roadmap;
+    },
+
+    [Mutations.ADD_CARD_TODO](store, month) {
+        debugger
+        const roadmapMonth = store.roadmap.find( n => n.name == month );
+        let card = {
+            id: Math.random(),
+            title: "",
+            description: "",
+        };
+        
+        roadmapMonth.status.todo.unshift(new Card(card))
     },
 
     [Mutations.MOVE_TO_DOING](store, { month, card }) {
