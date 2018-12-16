@@ -1,10 +1,16 @@
 <template>
-    <div class="content-card" :class="bindClass">
+    <div class="content-card" :class="bindClass" @click="openEdit" @mouseleave="closeEdit">
         <button v-if="fromPath && action" class="move-card" @click="moveCard">
             <img src="@/../static/icon/arrow-right-solid.svg" alt="">
         </button>
-        <div class="titulo" v-text="card.title"></div>
-        <p v-if="fromPath" v-text="card.description"></p>
+        <div v-if="!(fromPath && edit)">
+            <div class="titulo" v-text="card.title"></div>
+            <p v-if="fromPath" v-text="card.description"></p>
+        </div>
+        <form v-if="fromPath && edit">
+            <input class="titulo edit" v-model="card.title" />
+            <textarea class="edit" rows="3" v-model="card.description"></textarea>
+        </form>
     </div>
 </template>
 
@@ -12,6 +18,11 @@
 import Card from '@/entity/Card';
 
 export default {
+    data() {
+        return {
+            edit: false,
+        }
+    },
     props: {
         card: {
             type: Object,
@@ -29,6 +40,10 @@ export default {
             type: Boolean,
             default: true
         },
+        // edit: {
+        //     type: Boolean,
+        //     default: false
+        // },
     }, 
     computed: {
         bindClass() {
@@ -41,11 +56,17 @@ export default {
             if (this.status == 'done') {
                 return { 'done': true};
             }
-        }
+        },
     },
     methods: {
         moveCard() {
             this.$emit('moveCard');
+        },
+        openEdit() {
+            return this.edit = true;
+        },
+        closeEdit() {
+            return this.edit = false;
         }
     }
 
@@ -78,7 +99,12 @@ export default {
             font-size: 20px
         +media-min-lg
             font-size: 22px
-
+    .edit
+        background-color: transparent
+        border-radius: 5px
+        border: 1px solid #dadada
+        padding: 0.375rem 1.75rem
+        width: 100%
     
 .todo
     background-color: $color-todo

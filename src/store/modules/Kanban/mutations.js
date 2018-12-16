@@ -9,7 +9,6 @@ export default {
     },
 
     [Mutations.ADD_CARD_TODO](store, month) {
-        debugger
         const roadmapMonth = store.roadmap.find( n => n.name == month );
         let card = {
             id: Math.random(),

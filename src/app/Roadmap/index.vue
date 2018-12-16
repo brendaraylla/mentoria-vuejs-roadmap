@@ -69,16 +69,17 @@ export default {
         display: flex
         justify-content: space-around
         width: 100%
+        padding: 20px 0
     +media-min-sm
     +media-min-md
-        padding: 50px
+        // padding: 50px
         height: 100%
         width: auto
         flex-direction: row
         position: absolute
         margin: 0 75px
         .col
-            padding: 50px
+            padding: 0 50px
             height: 100%
     +media-min-lg
         margin: 0 110px

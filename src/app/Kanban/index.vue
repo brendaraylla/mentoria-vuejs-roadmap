@@ -5,7 +5,7 @@
                 <img src="@/../static/icon/arrow-left-solid.svg" alt="">
             </router-link>
             <div class="todo">
-                <h2 class="status" @click="localAddCardTodo(month)">TO DO</h2>
+                <h2 class="status" @dblclick="localAddCardTodo(month)">TO DO</h2>
                 <div class="cards">
                     <card-item v-for="card in status.todo" :key="card.id" 
                                @moveCard="localMoveToDoing(month, card)" :card="card" :status="'todo'" :fromPath="true">

@@ -1,9 +1,24 @@
 <template>
     <div class="content-months">
-        <div class="card">
-            <card-item v-for="card in month.status.todo"  :key="card.id" :card="card" :status="'todo'"  :fromPath="false"></card-item>
-            <card-item v-for="card in month.status.doing" :key="card.id" :card="card" :status="'doing'" :fromPath="false"></card-item>
-            <card-item v-for="card in month.status.done"  :key="card.id" :card="card" :status="'done'"  :fromPath="false"></card-item>
+        <div class="card" :class="bindClass">
+            <card-item v-for="(card, index) in month.status.todo" :key="card.id"
+                       v-show="index < 1"
+                       :card="card"
+                       :status="'todo'"
+                       :fromPath="false">
+            </card-item>
+            <card-item v-for="(card, index) in month.status.doing" :key="card.id"
+                       v-show="index < 1"
+                       :card="card"
+                       :status="'doing'"
+                       :fromPath="false">
+            </card-item>
+            <card-item v-for="(card, index) in month.status.done" :key="card.id"
+                       v-show="index < 1"
+                       :card="card"
+                       :status="'done'"
+                       :fromPath="false">
+            </card-item>
         </div>
         <div class="button">
             <router-link :to="{ name: 'Kanban', params: {year: month.year, month: month.name} }">
@@ -26,6 +41,14 @@ export default {
     computed: {
         monthUpperCase() {
             return this.month.name.toUpperCase();
+        },
+        bindClass() {
+            let result = this.month.id % 2;
+            if ( result == 0 ) {
+                return { 'par': true }
+            } else {
+                return { 'impar': true }
+            }
         }
     },
     components: {
@@ -52,12 +75,23 @@ export default {
 
 .card
     position: relative
-    +media-min-sm
+    &.par
         left: 5%
         width: 200px
+    &.impar
+        left: 60%
+    +media-min-sm
+        &.par
+            left: 10%
+        &.impar
+            left: 63%
     +media-min-md
-        height: 100%
-        left: 0
+        &.par
+            left: 0
+            top: 62%
+        &.impar
+            left: 0
+            top: 5%
 
 .button
     display: flex
